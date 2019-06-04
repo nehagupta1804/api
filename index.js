@@ -24,6 +24,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   }
   function rhymingWordHandler(agent){
     const word = agent.parameters.word;
+    agent.add(word);
     return axios.get('https://api.datamuse.com/words?rel_rhy=${word}')
     .then((result)=>{
       result.data.map(wordObj => {
